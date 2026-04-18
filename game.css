@@ -1,0 +1,172 @@
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body, html { width: 100%; height: 100%; overflow: hidden; background-color: #000; }
+
+#game-screen { position: relative; width: 1140px; height: 641px; margin: 0 auto; }
+#bg-video { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; z-index: 1; }
+#title-scene { position: absolute; width: 100%; height: 100%; z-index: 20; }
+#title-ui { position: relative; z-index: 25; display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100%; gap: 30px; }
+
+#title-logo { width: 500px; opacity: 0; transform: translateY(20px); transition: opacity 1.5s ease-in-out, transform 1.5s ease-out; }
+#start-btn { width: 200px; opacity: 0; transform: translateY(20px); transition: opacity 1.5s ease-in-out, transform 1.5s ease-out; cursor: pointer; }
+#start-btn:hover { filter: brightness(1.1); }
+#start-btn:active { transform: scale(0.95); transition: 0.1s; }
+
+.fade-in { opacity: 1 !important; transform: translateY(0) !important; }
+
+#scene-container { position: absolute; width: 100%; height: 100%; z-index: 5; display: none; transition: filter 0.5s ease; transform: scale(1.02); }
+.frost-glass { filter: blur(15px) brightness(0.4); }
+#bg-next { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; z-index: 1; }
+#character-layer { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 10; pointer-events: none; }
+.game-character { position: absolute; height: 120px; width: auto; opacity: 0; transition: opacity 3s ease-in-out; transform-origin: bottom center; cursor: pointer; pointer-events: auto; }
+.appear { opacity: 1 !important; }
+
+@keyframes softPulse {
+    0% { transform: scale(1); filter: brightness(1); }
+    50% { transform: scale(1.05); filter: brightness(1.1); } 
+    100% { transform: scale(1); filter: brightness(1); }
+}
+.pulse-effect { animation: softPulse 1.5s infinite ease-in-out; }
+
+#global-back-btn {
+    position: absolute; top: 20px; left: 20px;
+    font-family: sans-serif; font-size: 24px; font-weight: bold; color: #fff;
+    text-shadow: 2px 2px 4px #000; z-index: 100; cursor: pointer; transition: transform 0.1s; display: none; 
+}
+#global-back-btn:hover { transform: scale(1.1); color: #ffeb3b; }
+#global-back-btn:active { transform: scale(0.9); }
+
+/* 대화창 시스템 공통 스타일 */
+.dialog-system {
+    position: absolute; top: 30px; left: 50%; transform: translateX(-50%);
+    width: 927px; height: 270px; display: none; opacity: 0; transition: opacity 0.3s ease-in-out;
+}
+#dialog-layer { top: auto; bottom: 30px; z-index: 30; } 
+#info-dialog-layer { z-index: 50; } 
+#candidate-dialog-layer { z-index: 55; } 
+
+.dialog-bubble-bg {
+    position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+    object-fit: contain; object-position: center; z-index: 1;
+}
+
+.info-bubble-container { position: relative; width: 100%; height: 100%; }
+.dialog-content-wrapper {
+    position: relative; z-index: 2; display: flex; align-items: stretch;
+    height: 100%; padding: 20px 40px;
+}
+
+.profile-section {
+    display: flex; flex-direction: column; align-items: center; justify-content: flex-start;
+    width: 200px; height: 100%; padding-top: 25px; flex-shrink: 0;
+}
+.portrait-box {
+    width: 160px; height: 140px; display: flex; align-items: flex-end; 
+    justify-content: center; overflow: visible; margin-bottom: 5px;
+}
+.portrait-box img { height: 100%; width: 100%; object-fit: contain; object-position: bottom center; }
+
+.candidate-portrait { height: 150px; width: 170px; }
+.candidate-portrait img { height: 110%; } 
+
+.character-name { font-family: sans-serif; font-size: 18px; font-weight: bold; color: #000; }
+.text-section { flex: 1; display: flex; flex-direction: column; padding: 25px 20px 20px 20px; position: relative; }
+.topic-title { font-family: sans-serif; font-size: 32px; font-weight: bold; color: #000; text-align: center; margin-bottom: 20px; letter-spacing: 0.05em; height: 40px; }
+
+.dialog-content-area { position: relative; width: 100%; flex: 1; display: flex; align-items: center; justify-content: center; }
+.tiger-content-area { position: absolute; z-index: 35; left: 40px; top: 30px; width: 680px; height: 210px; }
+#tiger-char { position: absolute; right: -60px; bottom: 0px; width: 293px; height: 412px; z-index: 32; opacity: 0; transition: opacity 0.5s; pointer-events: none; }
+
+.text-container { width: 530px; height: 120px; display: flex; align-items: center; justify-content: center; padding: 0 20px; }
+.dyslexia-text { width: 100%; font-family: sans-serif; font-size: 21px; font-weight: bold; color: #333333; line-height: 1.6; letter-spacing: 0.05em; text-align: left; word-break: keep-all; margin: 0; }
+
+.nav-arrow { position: absolute; top: 50%; transform: translateY(-50%); font-size: 32px; color: #666; cursor: pointer; user-select: none; transition: color 0.1s, transform 0.1s; z-index: 40; }
+.nav-left { left: 0px; }
+.nav-right { right: 0px; } 
+.nav-arrow:hover { color: #000; transform: translateY(-50%) scale(1.2); }
+.nav-arrow:active { transform: translateY(-50%) scale(0.9); }
+.hidden { display: none !important; }
+.appear-dialog { opacity: 1 !important; }
+
+.pixel-button {
+    font-family: sans-serif; font-size: 18px; font-weight: bold; color: #333;
+    background-color: #f0f0f0; border: 4px solid #333; border-radius: 10px; 
+    padding: 6px 12px; cursor: pointer; user-select: none; transition: background-color 0.1s, transform 0.1s;
+    display: inline-block; width: fit-content; white-space: nowrap; 
+}
+.pixel-button:hover { background-color: #e0e0e0; }
+.pixel-button:active { transform: scale(0.95); background-color: #d0d0d0; }
+
+.action-button { position: absolute; bottom: 35px; right: 45px; z-index: 100; }
+.start-button-pixel { position: absolute; bottom: 35px; left: 380px; transform: translateX(-50%); z-index: 100; display: none; }
+.start-button-pixel:active { transform: translateX(-50%) scale(0.95); }
+#quiz-btn-container { position: absolute; bottom: 35px; left: 380px; transform: translateX(-50%); display: flex; gap: 20px; z-index: 100; }
+
+#scene-image-layer { position: absolute; top: 320px; bottom: 0; left: 0; right: 0; z-index: 20; display: none; opacity: 0; transition: opacity 0.3s; pointer-events: none; }
+#active-scene-image { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 286px; height: 286px; object-fit: contain; }
+
+/* 미니게임 (트리아지) 및 Drag & Drop 전용 */
+.minigame-layer-system {
+    position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+    z-index: 60; display: none; opacity: 0; transition: opacity 0.3s ease-in-out;
+}
+.minigame-bubble-container {
+    position: absolute; top: 50px; bottom: 50px; left: 150px; right: 150px; 
+    background-color: rgba(66, 165, 245, 0.9); border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.3); padding: 20px; 
+}
+.minigame-game-area {
+    width: 100%; height: 100%; background-color: #ffffff;
+    border: 4px solid #000000; border-radius: 8px; position: relative; overflow: hidden; 
+}
+
+.triage-title-img { position: absolute; top: 20px; left: 50%; transform: translateX(-50%); height: 80px; object-fit: contain; pointer-events: none; }
+.doors-container { position: absolute; top: 130px; left: 50%; transform: translateX(-50%); width: 500px; height: 180px; pointer-events: none; }
+.triage-doors-bg { width: 100%; height: 100%; object-fit: contain; }
+
+.drop-zone { position: absolute; top: 0; width: 33.333%; height: 100%; pointer-events: auto; }
+.red-zone { left: 0; }
+.yellow-zone { left: 33.333%; }
+.green-zone { left: 66.666%; }
+.zone-hover { background-color: rgba(255, 255, 255, 0.2); border-radius: 10px;}
+
+.game-doctor { position: absolute; bottom: 20px; right: 20px; height: 180px; object-fit: contain; pointer-events: none; z-index: 10; }
+
+.draggable-patient {
+    position: absolute; 
+    object-fit: contain;
+    cursor: grab;
+    z-index: 100;
+    -webkit-user-drag: none; user-drag: none;
+    transition: opacity 0.2s ease; 
+}
+
+#patient-stretcher { left: 10%; bottom: 10%; height: 110px; }
+#patient-bandage { left: 40%; bottom: 10%; height: 120px; }
+#patient-bboy { left: 65%; bottom: 10%; height: 130px; }
+
+.is-dragging { cursor: grabbing; opacity: 0.9; z-index: 1000 !important; }
+.is-dropped-correct { opacity: 0; cursor: default; pointer-events: none; }
+
+.minigame-close-btn {
+    position: absolute; top: 10px; right: 10px; font-family: sans-serif; font-size: 24px; font-weight: bold;
+    color: #ffffff; background-color: rgba(255, 0, 0, 0.8); border: 2px solid #ffffff; border-radius: 4px;
+    width: 36px; height: 36px; display: flex; align-items: center; justify-content: center;
+    cursor: pointer; transition: transform 0.1s; z-index: 10; 
+}
+.minigame-close-btn:hover { transform: scale(1.1); background-color: rgba(255, 0, 0, 1); }
+.minigame-close-btn:active { transform: scale(0.9); }
+
+.win-overlay {
+    position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+    background-color: rgba(0, 0, 0, 0.8); z-index: 2000; 
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    backdrop-filter: blur(5px);
+}
+#win-success-img { width: 350px; object-fit: contain; }
+
+#unlocked-layer { width: 927px; height: 450px; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 80;}
+.unlocked-content { position: relative; z-index: 2; width: 100%; height: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+.unlocked-title { height: 70px; margin-bottom: 20px; object-fit: contain; }
+.unlocked-info { display: flex; flex-direction: column; align-items: center; gap: 10px; }
+.unlocked-hello { font-family: sans-serif; font-size: 26px; font-weight: bold; color: #000; }
+.unlocked-robot { height: 160px; object-fit: contain; }
+.unlocked-role { font-family: sans-serif; font-size: 22px; font-weight: bold; color: #000; margin-top: 5px; }
