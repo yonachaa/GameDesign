@@ -1,0 +1,48 @@
+/* 공통 스타일 초기화 */
+* { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Malgun Gothic', '맑은 고딕', sans-serif; }
+body { background-color: #f5f6f8; color: #333; }
+.container { width: 1200px; margin: 0 auto; }
+.flex-between { display: flex; justify-content: space-between; align-items: center; }
+a { text-decoration: none; color: inherit; }
+ul { list-style: none; }
+
+/* 1. 상단 헤더 영역 */
+.top-bar { background: #fff; padding: 15px 0; border-bottom: 1px solid #ddd; }
+.btn-back { background: #444; color: #fff; padding: 8px 15px; border-radius: 20px; font-size: 13px; margin-right: 20px; font-weight: bold; transition: background 0.2s;}
+.btn-back:hover { background: #00428B; }
+.logo-text { font-size: 18px; vertical-align: middle; }
+.logo-text strong { color: #00428B; }
+.campaign-info { font-weight: bold; font-size: 14px; }
+.blue-txt { color: #00428B; } .green-txt { color: #2E7D32; }
+
+/* 2. 네비게이션 */
+.main-nav { background: #333; }
+.main-nav ul { display: flex; }
+.main-nav li { flex: 1; text-align: center; border-right: 1px solid #555; }
+.main-nav li:first-child { border-left: 1px solid #555; }
+.main-nav a { display: block; padding: 15px 0; color: #fff; font-weight: bold; font-size: 15px; }
+.main-nav li.active { background: #555; }
+
+/* 3. 메인 콘텐츠 및 게임 영역 */
+.main-content { margin-top: 30px; margin-bottom: 50px; }
+.content-wrapper { background: #fff; border: 1px solid #ddd; border-radius: 4px; box-shadow: 0 2px 5px rgba(0,0,0,0.05); }
+
+.game-area { padding: 30px; width: 100%; }
+.tab-label { border-bottom: 2px solid #333; display: inline-block; padding: 5px 15px; margin-bottom: 20px; color: #555; font-weight: bold; }
+
+/* ★ 핵심: 16:9 (1920x1080) 비율을 유지하는 게임 컨테이너 ★ */
+#game-viewport { 
+    width: 100%; /* 부모 넓이에 꽉 차게 설정 */
+    aspect-ratio: 16 / 9; /* 무조건 16:9 비율 유지 */
+    background-color: #fdfdfd;
+    border: 2px dashed #ccc; 
+    display: flex; 
+    align-items: center; 
+    justify-content: center; 
+    border-radius: 4px;
+    overflow: hidden; /* 게임이 영역 밖으로 나가지 않도록 설정 */
+}
+.game-hint { color: #999; font-size: 16px; font-weight: bold; }
+
+/* 4. 푸터 */
+.footer { padding: 20px 0; text-align: center; color: #888; font-size: 13px; border-top: 1px solid #ddd; margin-top: 20px; }

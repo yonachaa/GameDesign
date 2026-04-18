@@ -1,0 +1,52 @@
+* { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Malgun Gothic', '맑은 고딕', sans-serif; color: #333; }
+body { background-color: #ffffff; line-height: 1.5; }
+a { text-decoration: none; color: inherit; }
+ul { list-style: none; }
+.container { width: 1200px; margin: 0 auto; }
+.flex-between { display: flex; justify-content: space-between; align-items: center; }
+.top-info-bar { font-size: 12px; color: #000; padding: 10px 0; }
+.main-header { padding: 20px 0; border-bottom: 2px solid #f0f0f0; }
+.election-title h1 { font-size: 24px; font-weight: 800; line-height: 1.2; }
+.election-dates { display: flex; gap: 30px; font-size: 15px; }
+.election-dates .label { color: #999; margin-right: 10px; }
+.global-nav { display: flex; align-items: center; padding: 20px 0; border-bottom: 2px solid #00428B; }
+.logo { font-size: 18px; font-weight: bold; color: #00428B; width: 250px; }
+.nav-links { display: flex; gap: 40px; font-weight: bold; font-size: 16px; }
+.layout-main { display: flex; margin-top: 30px; gap: 20px; }
+.left-slogan { width: 250px; }
+.left-slogan h2 { font-size: 20px; margin-bottom: 20px; }
+.slogan-box { background-color: #f8f9fa; padding: 30px 20px; border-radius: 50% 50% 0 0; text-align: center; border: 1px solid #eaeaea; }
+.slogan-box p { font-size: 18px; }
+.sub-slogan { font-size: 13px !important; color: #666; margin-top: 10px; }
+.search-tags { margin-top: 20px; color: #888; font-size: 13px; }
+.center-content { flex: 1; }
+.tab-container { border-top: 1px solid #ddd; border-bottom: 1px solid #ddd; margin-bottom: 30px; }
+.tab-menu { display: flex; border-bottom: 1px solid #ddd; }
+.tab-link { flex: 1; text-align: center; padding: 15px 0; cursor: pointer; font-weight: bold; color: #666; }
+.tab-link.active { color: #000; border-top: 3px solid #00428B; background: #fff; border-left: 1px solid #ddd; border-right: 1px solid #ddd; margin-top: -1px; margin-bottom: -1px; }
+.tab-content { display: none; padding: 20px; }
+.tab-content.active { display: block; }
+.grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px 10px; text-align: center; font-size: 14px; }
+.card-section { display: grid; grid-template-columns: repeat(4, 1fr); gap: 15px; }
+.card { border: 1px solid #ddd; border-radius: 8px; padding: 20px 15px; text-align: center; min-height: 220px; display: flex; flex-direction: column; justify-content: space-between; }
+.card h3 { font-size: 15px; margin-bottom: 10px; }
+.card-gray { background-color: #f1f0ea; }
+.text-red { color: #d32f2f; }
+.card-placeholder-img { background-color: #eee; height: 100px; display: flex; align-items: center; justify-content: center; color: #999; font-size: 12px; }
+.view-all { text-align: right; margin-top: 10px; font-size: 12px; color: #666; }
+.right-quickmenu { width: 150px; border-left: 1px solid #eee; padding-left: 20px; }
+.right-quickmenu li { margin-bottom: 15px; }
+.right-quickmenu a { font-size: 13px; color: #555; }
+.bottom-sections { display: flex; gap: 40px; margin-top: 50px; }
+.half-section { flex: 1; }
+.section-title { font-size: 16px; font-weight: bold; margin-bottom: 15px; border-bottom: 1px solid #333; padding-bottom: 10px; }
+.border-grid { border-top: 1px solid #eee; }
+.border-grid a { padding: 15px 10px; border-bottom: 1px solid #eee; font-size: 14px; display: block; }
+.grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); }
+.grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); }
+.banner-placeholder { background-color: #fff4f4; border: 2px solid #333; border-radius: 50px; text-align: center; padding: 30px; height: 120px; display: flex; align-items: center; justify-content: center; }
+.main-footer { display: flex; gap: 20px; margin-top: 50px; margin-bottom: 50px; }
+.footer-box { flex: 1; background-color: #f9f9f9; padding: 20px; border-radius: 8px; text-align: center; }
+.footer-box h4 { font-size: 14px; margin-bottom: 10px; color: #555; }
+.phone-number { font-size: 28px; font-weight: bold; color: #d97706; }
+.btn-shortcut { border: 1px solid #ccc; background: #fff; padding: 5px 15px; border-radius: 20px; cursor: pointer; }

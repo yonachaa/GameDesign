@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>선거통계시스템 - 중앙선거관리위원회</title>
+    <link rel="stylesheet" href="statistics.css">
+</head>
+<body>
+    <header class="top-bar">
+        <div class="container flex-between">
+            <div class="logo-group">
+                <a href="index.html" class="btn-back">⬅ 메인화면으로 돌아가기</a>
+                <span class="logo-text">중앙선거관리위원회 <strong>선거통계시스템</strong></span>
+            </div>
+            <div class="campaign-info">
+                <span class="blue-txt">아름다운 선거</span> <span class="green-txt">행복한 우리 동네</span>
+            </div>
+        </div>
+    </header>
+
+    <nav class="main-nav">
+        <ul class="container">
+            <li class="active"><a href="#">기본현황</a></li>
+            <li><a href="#">예비후보자</a></li>
+            <li><a href="#">후보자</a></li>
+            <li><a href="#">선거운동</a></li>
+            <li><a href="#">투·개표</a></li>
+        </ul>
+    </nav>
+
+    <main class="main-content container">
+        <div class="content-wrapper">
+            <section class="game-area">
+                <div class="tab-label">예비후보자</div>
+                
+                <div id="game-viewport">
+                    <iframe src="game.html" width="100%" height="100%" frameborder="0" scrolling="no" style="border-radius: 4px;"></iframe>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <footer class="footer container">
+        <p>&copy; 중앙선거관리위원회. All Rights Reserved.</p>
+    </footer>
+    
+    <script src="statistics.js"></script>
+</body>
+</html>
